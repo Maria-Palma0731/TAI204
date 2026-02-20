@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #000; }
+        h1 { color: #000; }
+
+        .form-group { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .form-group input {
+            padding: 8px 12px;
+            border: 1px solid #000;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 150px;
+        }
+        .btn-add {
+            padding: 8px 20px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-add:hover { background: #333; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { background: #000; color: #fff; padding: 10px; text-align: left; }
+        td { padding: 9px 10px; border-bottom: 1px solid #ccc; }
+        tr:hover { background: #f0f0f0; }
+
+        .btn-del {
+            padding: 5px 14px;
+            background: #555;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .btn-del:hover { background: #000; }
+    </style>
+</head>
+<body>
+    <h1>Usuarios</h1>
+
+    <form method="POST" action="/agregar">
+        <div class="form-group">
+            <input type="number" name="id"     placeholder="ID"     required>
+            <input type="text"   name="nombre" placeholder="Nombre" required>
+            <input type="number" name="edad"   placeholder="Edad"   required>
+            <button type="submit" class="btn-add">Agregar</button>
+        </div>
+    </form>
+
+    <table>
+        <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Edad</th><th></th></tr>
+        </thead>
+        <tbody>
+        {% for u in usuarios %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.nombre }}</td>
+                <td>{{ u.edad }}</td>
+                <td>
+                    <form method="POST" action="/eliminar/{{ u.id }}">
+                        <button type="submit" class="btn-del">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
