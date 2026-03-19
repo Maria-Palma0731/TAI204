@@ -33,7 +33,7 @@ CONTRASENA_VALIDA = "123456"
 #Configuracion OAuth2
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-#Generacion de token
+#Generar de token para OAuth2
 def generar_token(data:dict):
     datos = data.copy()
     expiracion = datetime.now() + timedelta(minutes=Access_token_expire_minutes)
