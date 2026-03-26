@@ -6,7 +6,7 @@ WORKDIR /app
 COPY requirements.txt . 
 
 #Instalamos los requerimientos.
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --default-timeout=1000 --retries 5 -r requirements.txt
 
 #Copiar el codigo del API
 COPY ./app ./app
